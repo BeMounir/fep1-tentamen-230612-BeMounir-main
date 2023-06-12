@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rover database</title>
+    <script type="module" src="/main.js"></script>
+  </head>
+
+  <dialog id="photo-dialog">
+    <article>
+      <h2 id="photo-dialog-heading"></h2>
+      <img id="photo-dialog-image" src="" alt=""/>
+      <p id="photo-dialog-description"></p>
+      <p id="photo-dialog-sol-date"></p>
+      <p id="photo-dialog-earth-date"></p>
+      <p id="photo-dialog-rover-name"></p>
+      <p id="photo-dialog-rover-landing-date"></p>
+      <p id="photo-dialog-rover-launch-date"></p>
+    
+      <form method="dialog">
+        <div id="buttons">
+          <button type="submit" class="primaryBtn">Close</button>
+          <a id="edit-link" href="/pages/edit-meta-data.html">Edit meta data</a>
+        </div>
+      </form>
+    </article>
+  </dialog>
+
+  <body>
+    <div class="grid-container">
+      <header class="header">
+        <img class="logo" src="/mars-rover.jpeg" alt="Mars rover logo">
+        <div class="title">
+          <h1>Mars Rover photo database</h1>
+          <h2>FEP1 - Tentamen</h2>
+          </div>
+      </header>
+      <main class="main">
+        <div id="photos-view"></div>
+        <section id="backgroundimage-info"></section>
+      </main>
+      <nav class="menu">
+        <h3>Data selection</h3>
+        <div id="sol-selection-view"></div>
+        <div id="camera-selection-view"></div>
+        <div id="rover-selection-view"></div>
+      </nav>
+      <aside class="aside">
+        <div id="rover-detail-view">
+          <h3>Wall-e</h3>
+          <h4>Part of Mars Science Laboratory</h4>
+          <img 
+            src="/WALL-E_balloon_at_Shin_Kong_Cineplex_20080725a_(cropped).jpg" 
+            alt="Tianmu peter, CC BY 3.0 &gt;https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons">
+          <h3>Description</h3>
+          <p>
+            Wall-e and this text are placeholders for the rover detail view.
+          </p>
+        </div>
+      </aside>
+      <footer class="footer">
+        <p>Mars Exploration Program (MEP) is a long-term effort to explore the planet Mars, funded and led by NASA. Formed in 1993, MEP has made use of orbital spacecraft, landers, and Mars rovers to explore the possibilities of life on Mars, as well as the planet's climate and natural resources.</p>
+        <p>The program is managed by NASA's Science Mission Directorate by Doug McCuistion of the Planetary Science Division. As a result of 40% cuts to NASA's budget for fiscal year 2013, the Mars Program Planning Group (MPPG) was formed to help reformulate the MEP, bringing together leaders of NASA's technology, science, human operations, and science missions.</p>
+      </footer>
+    </div>
+
+    <!-- Templates for all views -->
+    <template id="photo-view-template">
+      <h3>Photos</h3>
+      <div class="photo-grid"></div>
+    </template>
+
+    <template id="photo-element-template">
+      <div>
+        <button class="photo-grid-item">
+          <img>
+        </button>
+      </div>
+    </template>
+
+    <template id="camera-selection-template">
+      <fieldset>
+        <legend>Select Camera</legend>
+      </fieldset>
+    </template>
+
+    <template id="sol-selection-template">
+      <fieldset>
+        <legend>Select sol date</legend>
+        <label for="sol-date">Sol date (0...2000)</label><br/>
+        <input id="sol-date" type="number" value="1000">
+      </fieldset>
+    </template>
+
+    <template id="rover-selection-template">
+      <fieldset>
+        <legend>Select Rover</legend>
+      </fieldset>
+    </template>
+
+    <template id="curiosity-detail-template">
+      <h3>Curiosity</h3>
+      <h4>Part of Mars Science Laboratory</h4>
+      <img 
+        src="/curiosity-rover.jpg" 
+        alt="Self-portrait by Curiosity at the foot of Mount Sharp in October 2015">
+      <h3>Description</h3>
+      <p>
+        Curiosity is a car-sized Mars rover designed to explore the Gale crater on 
+        Mars as part of NASA's Mars Science Laboratory (MSL) mission. Curiosity was 
+        launched from Cape Canaveral (CCAFS) on November 26, 2011, at 15:02:00 UTC 
+        and landed on Aeolis Palus inside Gale crater on Mars on August 6, 2012.
+      </p>
+    </template>
+
+    <template id="opportunity-detail-template">
+      <h3>Opportunity</h3>
+      <h4>Part of Mars Science Laboratory</h4>
+      <img 
+        src="/opprtunity-rover.jpg" 
+        alt="An artist's portrayal of Opportunity operating on the surface of Mars.">
+      <h3>Description</h3>
+      <p>
+        Opportunity, also known as MER-B (Mars Exploration Rover - B) or MER-1, is 
+        a robotic rover that was active on Mars from 2004 until 2018. 
+        Opportunity was operational on Mars for 5111 sols (14 years, 138 days on Earth). 
+        Launched on July 7, 2003, as part of NASA's Mars Exploration Rover program, it 
+        landed in Meridiani Planum on January 25, 2004, three weeks after its twin, Spirit (MER-A).
+      </p>
+    </template>
+
+    <template id="spirit-detail-template">
+      <h3>Spirit</h3>
+      <h4>Part of Mars Science Laboratory</h4>
+      <img 
+        src="/spirit-rover.jpg" 
+        alt="The Mars Exploration Rover-2 (MER-2) during testing for mobility and maneuverability.">
+      <h3>Description</h3>
+      <p>
+        Spirit, also known as MER-A (Mars Exploration Rover A) or MER-2, is a Mars robotic rover, 
+        active from 2004 to 2010. Spirit was operational on Mars for 2208 sols or 3.3 
+        Martian years (2269 days; 6 years, 77 days). It was one of two rovers of NASA's Mars 
+        Exploration Rover Mission managed by the Jet Propulsion Laboratory (JPL). Spirit landed 
+        successfully within the impact crater Gusev on Mars at 04:35 Ground UTC on January 4, 2004, 
+        three weeks before its twin, Opportunity (MER-B).
+      </p>
+    </template>
+
+
+  </body>
+</html>
