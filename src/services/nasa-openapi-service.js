@@ -4,8 +4,8 @@ import localStorageService from './local-storage-service';
 import { nasaApiSettings } from '../data/nasa-api-settings';
 
 /* 
-  Naam:   
-  Studentennummer:
+  Naam: Mounir Bekkaoui  
+  Studentennummer: 1835544
  */
  
 
@@ -167,7 +167,12 @@ class NasaOpenApiService {
     const apodUrl = `https://api.nasa.gov/planetary/apod?3IHqtrZcPdIFlkYmn5VHmUumHCPqzhmRfhEqWoW6&count=1`;
     const apodBackuplLocation = `../src/data/nasa-api-apod-cache.json`;
 
-    return new Promise((resolve, reject) => {
+    /* Ik creeer een nieuwe promise. Daarna fetch ik de variable met mijn API key. Also de resolve ok is dan retuned hij de
+    resolve dat naar json is verandert. als de status van de response 429 is. Dan pakt hij de backup API
+    en dan verandert hij de response om in json. dan handelt hij hem af met een then en catch. Daarna return
+    ik de promise
+    */
+    newPromise = new Promise((resolve, reject) => {
       fetch(apodUrl)
         .then(res =>{
           if (res.ok) {
@@ -182,8 +187,11 @@ class NasaOpenApiService {
         .then(data => resolve(data))
         .catch(error => reject(error))
     }
-    // TODO: See Assignment JS Fetch/Promise Opdracht A (Producer)
-  )}
+  )
+  return newPromise
+      // TODO: See Assignment JS Fetch/Promise Opdracht A (Producer)
+}
+  
 
 
   /**

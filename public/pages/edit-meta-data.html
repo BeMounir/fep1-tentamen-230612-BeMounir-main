@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <!-- 
-  Naam:   
-  Studentennummer: 
+  Naam: Mounir Bekkaoui
+  Studentennummer: 1835544
 -->
  
 <html lang="en">
@@ -23,21 +23,24 @@
       </div>
     </header>
     
+    <!--eerst creeer ik een main met daarin de h2 element. Daarna in de main creeer ik een form met
+    de class form container en in de form zet ik alle inputs die er moeten komen met de ids. dan voeg ik
+  een div toe met de image en de text eronder met spans om de naam en soldate aantegeven.-->
     <main id="edit-main">
       <h2 id="page-title">Edit photo meta data</h2>
-      <form class="form-container">
+      <form id="form-container">
         <p>Title</p>
-        <input id="edit-title">
+          <input id="edit-title">
         <p>Description</p>
-        <input id="edit-description">
+          <input id="edit-description">
         <p>Image coolness factor</p>
-        <input type="range" id="edit-coolness-factor">
+          <input type="range" id="edit-coolness-factor">
         <button id="formSubmitButton">Update meta data</button>
       </form>
-        <div id="image">
-          <img src="" alt="Picture of a rover on mars" id="meta-edit-image">
-          <p><span id="rovername">rovername</span> sol date <span id="soldate">soldate</span></p>
-        </div>
+      <div id="image">
+        <img src="" alt="Picture of a rover on mars" id="meta-edit-image">
+          p><span id="rovername">rovername</span> sol date <span id="soldate">soldate</span></p>
+      </div>
     </main>
     <!-- TODO: See HTML Edit Page Assignment -->
     <footer id="footnote">
